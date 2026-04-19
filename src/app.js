@@ -12,6 +12,7 @@ app.use(cors({ origin: "*" }));
 
 
 const PORT = process.env.PORT || 3000;
+console.log("ENV CHECK:", process.env.DATABASE_URL);
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT} `);
 
