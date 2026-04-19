@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# env
+.env
+.env.*
+
+# prisma generated
+prisma/generated/
+src/generated/prisma/
+
+# logs
+*.log
+*.exe
+
+# build
+dist/

@@ -1,0 +1,35 @@
+generator client {
+  provider   = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model QboToken {
+  id            Int      @id @default(autoincrement())
+  realmId       String   @unique
+  accessToken   String   @db.Text
+  refreshToken  String   @db.Text
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+    rentTransactions RentTransaction[]
+
+}
+
+model RentTransaction {
+  id              Int      @id @default(autoincrement())
+  realmId         String  
+  transactionDate DateTime
+  description     String
+  amount          Decimal  @db.Decimal(10, 2)
+  category         String?
+  qboTransactionId String? @unique
+  createdAt       DateTime @default(now())
+
+  qboToken        QboToken @relation(fields: [realmId], references: [realmId])
+
+  @@map("rent_transactions")
+}
