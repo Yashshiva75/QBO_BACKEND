@@ -38,7 +38,6 @@ const quickbooksTokenRepository = {
     });
   },
 
-  // Returns true if the access token is past its expiry time
   isAccessTokenExpired(tokens) {
   const now = new Date();
   const expiry = new Date(tokens.expiresAt);
@@ -46,7 +45,6 @@ const quickbooksTokenRepository = {
   return now >= expiry;
 },
 
-  // Returns true if the refresh token is past its expiry time (user must reconnect)
   isRefreshTokenExpired(tokens) {
     return new Date() >= new Date(tokens.refreshTokenExpiresAt);
   },

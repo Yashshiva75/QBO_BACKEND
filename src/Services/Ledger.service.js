@@ -23,10 +23,6 @@ const ledgerService = {
         // DYNAMIC FILTER: Matches the account you pass in the URL
         if (accountName === normalizedTarget) {
           const rawAmount = parseFloat(line.Amount) || 0;
-          
-          // DYNAMIC MATH: 
-          // If we are looking at a Bank Account (Checking), money out is a Credit.
-          // We use Math.abs to show the "Movement" of money as a positive value.
           const finalAmount = Math.abs(rawAmount);
 
           transactions.push({
@@ -35,13 +31,12 @@ const ledgerService = {
             description: line.Description || entry.PrivateNote || `Transaction: ${targetAccount}`,
             amount: finalAmount,
             qboTransactionId: `${entry.Id}-${line.Id}`,
-            category: targetAccount // Dynamic category based on URL
+            category: targetAccount 
           });
         }
       }
     }
 
-    // Sort: Newest first
     transactions.sort((a, b) => new Date(b.transactionDate) - new Date(a.transactionDate));
 
     

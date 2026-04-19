@@ -48,14 +48,12 @@ const quickbooksService = {
       }
     );
 
-    // Attach realmId to the token data before saving
     const tokenData = { ...response.data, realmId };
     const saved = await tokenRepository.saveTokens(realmId, tokenData);
     return saved;
   },
 
   // Step 3: Use the refresh token to get a new access token
-  // Call this when isAccessTokenExpired() returns true
   async refreshAccessToken(realmId) {
     const tokens = await tokenRepository.getTokensByRealmId(realmId);
 
