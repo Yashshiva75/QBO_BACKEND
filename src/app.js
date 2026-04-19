@@ -8,7 +8,7 @@ const quickbooksRoutes = require("./routes/Quickbooks.routes");
 const app = express();
 app.use(cors({ origin: "*" }));
 
-app.use("/quickbooks", quickbooksRoutes);
+// app.use("/quickbooks", quickbooksRoutes);
 
 
 const PORT = process.env.PORT || 3000;
